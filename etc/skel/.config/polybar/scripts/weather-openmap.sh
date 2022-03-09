@@ -51,7 +51,7 @@ if [ ! -z $CITY ]; then
     fi
 
     current=$(curl -sf "$API/weather?appid=$KEY&$CITY_PARAM&units=$UNITS")
-    #curl -s "https://api.openweathermap.org/data/2.5/onecall?lat=38.8&lon=12.09&appid=d585f250f6c9d81604a72a45f9c06350&units=metric" | jq -r '.daily[1].temp.day'
+    #curl -s "https://api.openweathermap.org/data/2.5/onecall?lat=0&lon=0&appid=TOKEN&units=metric" | jq -r '.daily[1].temp.day'
     forecast=$(curl -sf "$API/forecast?appid=$KEY&$CITY_PARAM&units=$UNITS&cnt=1")
 else
     location=$(curl -sf https://location.services.mozilla.com/v1/geolocate?key=geoclue)

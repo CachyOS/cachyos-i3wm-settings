@@ -1,0 +1,160 @@
+env:
+  TERM: xterm-256color
+  WINIT_X11_SCALE_FACTOR: "1"
+
+window:
+  dimensions:
+    columns: 80
+    lines: 24
+
+  decorations: full
+
+  opacity: 0.9
+
+  startup_mode: Windowed
+scrolling:
+  history: 2500
+  multiplier: 3
+
+# Colors (Solarized Dark)
+colors:
+  # Default colors
+  primary:
+    background: '#002b36' # base03
+    foreground: '#839496' # base0
+
+  # Cursor colors
+  cursor:
+    text:   '#002b36' # base03
+    cursor: '#839496' # base0
+
+  # Normal colors
+  normal:
+    black:   '#073642' # base02
+    red:     '#dc322f' # red
+    green:   '#859900' # green
+    yellow:  '#b58900' # yellow
+    blue:    '#268bd2' # blue
+    magenta: '#d33682' # magenta
+    cyan:    '#2aa198' # cyan
+    white:   '#eee8d5' # base2
+
+  # Bright colors
+  bright:
+    black:   '#002b36' # base03
+    red:     '#cb4b16' # orange
+    green:   '#586e75' # base01
+    yellow:  '#657b83' # base00
+    blue:    '#839496' # base0
+    magenta: '#6c71c4' # violet
+    cyan:    '#93a1a1' # base1
+    white:   '#fdf6e3' # base3
+# Colors (Oceanic Next)
+#colors:
+#  # Default colors
+#  primary:
+#    background: '#1b2b34'
+#    foreground: '#d8dee9'
+#
+#  # Colors the cursor will use if `custom_cursor_colors` is true
+#  cursor:
+#    text: '#1b2b34'
+#    cursor: '#ffffff'
+#
+#  # Normal colors
+#  normal:
+#    black:   '#343d46'
+#    red:     '#EC5f67'
+#    green:   '#99C794'
+#    yellow:  '#FAC863'
+#    blue:    '#6699cc'
+#    magenta: '#c594c5'
+#    cyan:    '#5fb3b3'
+#    white:   '#d8dee9'
+#
+#  # Bright colors
+#  bright:
+#    black:   '#343d46'
+#    red:     '#EC5f67'
+#    green:   '#99C794'
+#    yellow:  '#FAC863'
+#    blue:    '#6699cc'
+#    magenta: '#c594c5'
+#    cyan:    '#5fb3b3'
+#    white:   '#d8dee9'
+
+font:
+  normal:
+    family: Hack
+    style: Regular
+
+  bold:
+    family: Hack
+    style: Bold
+
+  italic:
+    family: Hack
+    style: Italic
+
+  bold_italic:
+    family: Hack
+    style: Bold Italic
+
+  size: 9
+
+  offset:
+    x: 0
+    y: 0
+
+  glyph_offset:
+    x: 0
+    y: 0
+
+draw_bold_text_with_bright_colors: false
+
+selection:
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+  save_to_clipboard: false
+
+cursor:
+  style: Block
+  vi_mode_style: None
+  unfocused_hollow: true
+  thickness: 0.15
+
+live_config_reload: false
+
+working_directory: None
+
+alt_send_esc: true
+
+mouse:
+  double_click: { threshold: 300 }
+  triple_click: { threshold: 300 }
+
+  hide_when_typing: true
+
+hints:
+  launcher:
+    program: xdg-open
+
+  modifiers: None
+
+mouse_bindings:
+  - { mouse: Middle, action: PasteSelection }
+
+key_bindings:
+  - { key: Paste,                                   action: Paste            }
+  - { key: Copy,                                    action: Copy             }
+  - { key: L,        mods: Control,                 action: ClearLogNotice   }
+  - { key: L,        mods: Control, mode: ~Vi,      chars: "\x0c"            }
+  - { key: PageUp,   mods: Shift,   mode: ~Alt,     action: ScrollPageUp,    }
+  - { key: PageDown, mods: Shift,   mode: ~Alt,     action: ScrollPageDown   }
+  - { key: Home,     mods: Shift,   mode: ~Alt,     action: ScrollToTop,     }
+  - { key: End,      mods: Shift,   mode: ~Alt,     action: ScrollToBottom   }
+  - { key: V,        mods: Control|Shift,           action: Paste            }
+  - { key: C,        mods: Control|Shift,           action: Copy             }
+  - { key: F,        mods: Control|Shift,           action: SearchForward    }
+  - { key: B,        mods: Control|Shift,           action: SearchBackward   }
+  - { key: C,        mods: Control|Shift, mode: Vi, action: ClearSelection   }
+  - { key: Key0,     mods: Control,                 action: ResetFontSize    }

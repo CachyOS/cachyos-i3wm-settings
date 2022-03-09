@@ -1,0 +1,11 @@
+gtk-theme-name="Nordic"
+gtk-enable-animations=1
+gtk-primary-button-warps-slider=0
+gtk-toolbar-style=3
+gtk-menu-images=1
+gtk-button-images=1
+gtk-cursor-theme-size=24
+gtk-cursor-theme-name="capitaine-cursors"
+gtk-icon-theme-name="char-white"
+gtk-font-name="Fira Sans, 10"
+gtk-modules="canberra-gtk-module"

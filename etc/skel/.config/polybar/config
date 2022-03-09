@@ -1,0 +1,242 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+background = #BCC3C3
+background-alt = #002B36
+foreground = #002B36
+foreground-alt = #BCC3C3
+primary = #ffb52a
+secondary = #e60053
+alert = #FF0000
+
+[bar/example]
+monitor = ${env:MONITOR:}
+width = 100%
+height = 22
+radius = 0.0
+fixed-center = true
+top = yes
+bottom = no
+override-redirect = false
+
+foreground = ${colors.foreground-alt}
+background = ${colors.background-alt}
+
+; Under-/overline pixel size and argb color
+; Individual values can be defined using:
+;   {overline,underline}-size
+;   {overline,underline}-color
+line-size = 1
+line-color = #dfdfdf
+
+border-top-size = 0
+border-bottom-size = 0
+border-left-size = 0
+border-right-size = 0
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 = Hack:pixelsize=9;3
+font-2 = "Wuncon Siji:pixelsize=10;3"
+font-1 = Weather Icons:style=Regular:size=10;2
+font-3 = FontAwesome5Free:style=Solid:pixelsize=10;3
+font-4 = FontAwesome5Brands:style=Solid:pixelsize=10;3
+
+
+modules-left = i3 sp2 info-hackspeed sp2
+modules-right = weather sp1 linux-ver sp1 updates sp2 date sp2
+
+tray-position = right
+tray-padding = 0
+tray-detached = false
+tray-maxsize = 14
+tray-scale = 1.0
+tray-background = ${colors.background-alt}
+tray-foreground = ${colors.foreground-alt}
+tray-offset-x = 0
+tray-offset-y = 0
+
+wm-restack = i3
+
+scroll-up = #i3.next
+scroll-down = #i3.prev
+
+cursor-click = pointer
+
+[module/sp1]
+type = custom/text
+content = " | "
+content-foreground = #93A1A1
+content-background = ${colors.background-alt}
+
+[module/sp2]
+type = custom/text
+content = " |"
+content-foreground = #93A1A1
+content-background = ${colors.background-alt}
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+strip-wsnumbers = false
+enable-click = false
+enable-scroll = false
+
+label-mode = %mode%
+label-mode-padding = 1
+label-mode-foreground = ${colors.foreground-alt}
+label-mode-background = ${colors.background-alt}
+
+; focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-foreground = ${colors.foreground}
+label-focused-background = ${colors.background}
+label-focused-underline = ${colors.foreground-alt}
+label-focused-padding = 1
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %index%
+label-unfocused-padding = ${self.label-focused-padding}
+label-unfocused-foreground = ${colors.foreground-alt}
+label-unfocused-background = ${colors.background-alt}
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-foreground = ${self.label-focused-background}
+label-visible-background = ${self.label-focused-foreground}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-foreground = ${colors.foreground}
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+
+; Separator in between workspaces
+label-separator =
+label-separator-padding = 0
+label-separator-foreground = #fff
+
+[module/info-hackspeed]
+type = custom/script
+exec = ~/.config/polybar/scripts/info-hackspeed.sh
+tail = true
+
+[module/weather]
+type = custom/script
+exec = ~/.config/polybar/scripts/weather-openmap.sh
+interval = 600
+
+[module/linux-ver]
+type = custom/script
+exec = uname -r
+interval = 600
+
+[module/updates]
+type = custom/script
+exec = ~/.config/polybar/scripts/arch_updates.sh
+interval = 60
+label = %output%
+
+[module/date]
+type = internal/date
+interval = 1
+
+time = "%a %d %I:%M %P"
+
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-background = ${colors.background-alt}
+
+label = %time%
+label-foreground = ${colors.foreground-alt}
+label-background = ${colors.background-alt}
+
+[module/volume]
+type = internal/alsa
+
+; Soundcard to be used
+; Usually in the format hw:# where # is the card number
+; You can find the different card numbers in `/proc/asound/cards`
+master-soundcard = default
+speaker-soundcard = default
+headphone-soundcard = default
+
+; Name of the master, speaker and headphone mixers
+; Use the following command to list available mixer controls:
+; $ amixer scontrols | sed -nr "s/.*'([[:alnum:]]+)'.*/\1/p"
+; If master, speaker or headphone-soundcard isn't the default,
+; use `amixer -c # scontrols` instead where # is the number
+; of the master, speaker or headphone soundcard respectively
+;
+; Default: Master
+master-mixer = Master
+
+format-volume = "<label-volume><bar-volume>"
+label-volume = " "
+label-volume-foreground = ${colors.foreground-alt}
+label-volume-background = ${colors.background-alt}
+
+format-muted-prefix = " "
+format-muted-foreground = ${colors.foreground-alt}
+format-muted-background = ${colors.background-alt}
+label-muted = MUTED
+
+bar-volume-width = 5
+bar-volume-foreground-0 = ${colors.foreground-alt}
+bar-volume-foreground-1 = ${colors.foreground-alt}
+bar-volume-foreground-2 = ${colors.foreground-alt}
+bar-volume-foreground-3 = ${colors.foreground-alt}
+bar-volume-foreground-4 = ${colors.foreground-alt}
+bar-volume-foreground-5 = ${colors.foreground-alt}
+bar-volume-foreground-6 = ${colors.foreground-alt}
+bar-volume-gradient = false
+bar-volume-indicator = []
+bar-volume-indicator-font = 1
+bar-volume-indicator-foreground = ${colors.foreground-alt}
+bar-volume-indicator-background = ${colors.background-alt}
+bar-volume-fill = -
+bar-volume-fill-font = 1
+bar-volume-fill-foreground = ${colors.foreground-alt}
+bar-volume-fill-background = ${colors.background-alt}
+bar-volume-empty = -
+bar-volume-empty-font = 1
+bar-volume-empty-foreground = ${colors.foreground-alt}
+bar-volume-empty-background = ${colors.background-alt}
+
+[settings]
+throttle-output = 5
+throttle-output-for = 10
+;throttle-input-for = 30
+screenchange-reload = true
+compositing-background = over
+compositing-foreground = over
+compositing-overline = over
+compositing-border = over
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5

@@ -2,7 +2,7 @@
 
 pkgname=cachyos-i3wm-settings
 pkgdesc='CachyOS i3wm settings'
-pkgver=1.0.0
+pkgver=1.0.1
 pkgrel=1
 arch=('any')
 url="https://github.com/cachyos/$pkgname"
@@ -26,7 +26,7 @@ depends=('cachyos-zsh-config'
          'noto-fonts'
          'ttf-hack'
          'ttf-fira-sans'
-         'nordic-theme-git')
+         'cachyos-nord-gtk-theme-git')
 install=$pkgname.install
 provides=('cachyos-desktop-settings')
 conflicts=('cachyos-desktop-settings')

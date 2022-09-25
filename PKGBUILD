@@ -3,13 +3,13 @@
 pkgname=cachyos-i3wm-settings
 pkgdesc='CachyOS i3wm settings'
 pkgver=1.0.1
-pkgrel=1
+pkgrel=2
 arch=('any')
 url="https://github.com/cachyos/$pkgname"
 license=('GPL')
 makedepends=('coreutils')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/$pkgver.tar.gz")
-sha512sums=('f6a1a83d5f7ac43fc0f26d3fa479064497b5fb124b582d1d65fc55b896f8b1f9aa7b2661e6432a45829640e063873169c72ae04e7bbd7a02c7f3a829426394f0')
+sha512sums=('662417f18fca1883b3708f7a6c17e3cfb07d1a1fb2efaa3658ca26289930cde1222cdf99d6f8aca4f582e27c2a50557eb9bfd8f42c9adf93fbfe8449ec405c9d')
 depends=('cachyos-zsh-config'
          'cachyos-picom-config'
          'feh'

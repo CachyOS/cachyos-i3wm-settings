@@ -1,4 +1,4 @@
-export BROWSER=cachy-browser
+export BROWSER=firefox
 export EDITOR=/usr/bin/vim
 export MAIL=thunderbird
 export TERM=alacritty
